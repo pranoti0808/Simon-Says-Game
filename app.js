@@ -44,6 +44,7 @@ function levelup(){
     gameSeq.push(randcolor);
     console.log(gameSeq);
     gameFlash(randbtn);
+    playSound();
 }
 
 
@@ -59,6 +60,8 @@ function chkAns(idx){
         setTimeout(function(){
             document.querySelector("body").style.backgroundColor = "white";
         },150);
+
+        playWrongSound();
         reset();
     }
 }
@@ -67,9 +70,12 @@ function chkAns(idx){
 function btnPress(){
     let btn = this;
     userFlash(btn);
+    playSound();
 
     userColor = btn.getAttribute("id");
     userSeq.push(userColor);
+
+   // playButtonSound();
 
     chkAns(userSeq.length-1);
 }
@@ -80,6 +86,19 @@ let allbtns = document.querySelectorAll(".btn");
 for (btn of allbtns){
     btn.addEventListener("click", btnPress);
 }
+
+
+function playSound() {
+    let audio = new Audio("PlaySound/button.mp3");
+    audio.play();
+}
+
+
+function playWrongSound() {
+    let audio = new Audio("PlaySound/wrong.mp3");
+    audio.play();
+}
+
 
 function reset(){
     started = false;
