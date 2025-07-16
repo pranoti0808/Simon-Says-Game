@@ -4,7 +4,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;  
+    min-height: 100vh; 
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    
 }
 
 
@@ -14,7 +18,19 @@ body {
     border-radius: 20%;
     border: 10px solid black;
     margin: 3rem;
+    max-width: 40vw;
+    max-height: 40vw;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s ease;
 }
+
+
+.btn:active{
+    transform: scale(0.95)
+}
+
 
 .container {
     display: flex;
@@ -27,6 +43,7 @@ body {
 .line-two{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .yellow {
@@ -46,9 +63,31 @@ body {
 }
 
 .Flash{
-    background-color: rgb(240, 236, 236);
+    background-color: rgb(240, 236, 236) !important;
 }
 
 .userFlash{
-    background-color: green;
+    background-color: green !important;
+}
+
+
+@media (max-width: 400px) {
+  .btn {
+    width: 35vw;
+    height: 35vw;
+    margin: 1rem;
+    font-size: 1.5rem;
+  }
+
+  h1{
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  body {
+    padding: 1rem;
+  }
 }
