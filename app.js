@@ -7,15 +7,34 @@ let level = 0
 let btns = ["yellow", "red", "purple", "green"];
 
 let h2 = document.querySelector("h2")
-document.addEventListener("keypress" ,function(){
-    if(started == false){
+let startBtn = document.querySelector("#startBtn");
+
+function startGame() {
+    if (!started) {
         console.log("Game is started");
         started = true;
-
         levelup();
+        if (startBtn) startBtn.style.display = "none"; // hide button if present
     }
+}
+
+
+document.addEventListener("keydown", startGame); // for laptop keyboard
+document.addEventListener("touchstart", startGame, { once: true }); // for mobile tap anywhere
+if (startBtn) {
+    startBtn.addEventListener("click", startGame); // if you added a start button
+}
+
+
+// document.addEventListener("keypress" ,function(){
+//     if(started == false){
+//         console.log("Game is started");
+//         started = true;
+
+//         levelup();
+//     }
     
-});
+// });
 
 function gameFlash(btn){
     btn.classList.add("Flash");
@@ -63,11 +82,14 @@ function chkAns(idx){
 
         playWrongSound();
         reset();
+        if (startBtn) startBtn.style.display = "inline-block";
     }
 }
 
 
 function btnPress(){
+    if (!started) return;
+    
     let btn = this;
     userFlash(btn);
     playSound();
